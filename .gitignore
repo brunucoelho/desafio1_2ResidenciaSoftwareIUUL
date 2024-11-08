@@ -1,0 +1,6 @@
+#formatos
+*.pdf
+
+#pasta
+node_modules/
+

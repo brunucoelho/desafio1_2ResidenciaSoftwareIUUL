@@ -1,0 +1,15 @@
+{
+  "name": "desafio1_2residenciasoftwareiuul",
+  "version": "1.0.0",
+  "description": "Repositório para a hospedagem do projeto proposto pela residência em software",
+  "main": "src/Main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}
