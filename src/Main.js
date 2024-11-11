@@ -1,22 +1,38 @@
-//import {MenuCadastroDePacientes} from './MenuCadastroDePacientes.js';
-//import {readlineSync} from './package.json'
-const myFunctions = require('./MenuCadastroDePacientes.js');
-const myFunctions2 = require('./MenuAgenda.js');
+// Importa o pacote prompt-sync
+const prompt = require('prompt-sync')();
 
-console.log('\nMenu Principal');
-var  readlineSync  = require ( 'readline-sync' );
-  menuPrincipal  = ['Cadastro de pacientes ' , 'Agenda ' ];
-  index  = readlineSync.keyInSelect( menuPrincipal ,'Digite o comando desejado!', {cancel: 'Fim'});
-console.log ( 'Ok, vamos ao menu de ' +  (menuPrincipal [index] == undefined ? 'Fim' : menuPrincipal [index]) + '!');
+function mainMenu() {
+  console.log('\nMenu Principal');
+  const menuPrincipal = ['Cadastro de Pacientes', 'Agenda'];
 
-if (index == 0) {
-  console.log('digitou 1')
-  //console.table(menuPrincipal);
-  myFunctions.menuCadastroDePacientes();
-} else if (index == 1) {
-  console.log('digitou 2')
-  myFunctions2.menuAgenda();
-  //MenuAgenda();
-} else {
-  console.log('digitou 0')
+  console.log('Digite o comando desejado!');
+  menuPrincipal.forEach((option, index) => {
+    console.log(`${index + 1} - ${option}`);
+  });
+  console.log('0 - Fim');
+
+  const choice = prompt('Selecione uma opção: ');
+  const index = parseInt(choice) - 1;
+
+  if (index === -1) {
+    console.log('Encerrando...');
+    return;
+  } else if (index === 0) {
+    console.log('digitou 1 - Cadastro de Pacientes');
+    const menuCadastroDePacientes = require('./MenuCadastroDePacientes.js').MenuCadastroDePacientes;
+    menuCadastroDePacientes();
+  } else if (index === 1) {
+    console.log('digitou 2 - Agenda');
+    const menuAgenda = require('./MenuAgenda.js').MenuAgenda;
+    menuAgenda();
+  } else {
+    console.log('Opção inválida');
+  }
 }
+
+module.exports.mainMenu = mainMenu;
+
+if (require.main === module) {
+  mainMenu();
+}
+
